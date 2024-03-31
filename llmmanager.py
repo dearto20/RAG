@@ -3,7 +3,7 @@ from pathlib import Path
 import tomllib
 import numpy as np
 import chromadb
-
+'''
 config = tomllib.loads(Path('config.toml').read_text())
 database = None
 openai_client = httpx.Client(headers={'Content-Type: application/json', 'Authorization: Bearer ' + config['openai_token']})
@@ -31,4 +31,4 @@ def get_database
     if database is None:
         database = chromadb.PersistentClient(path='data')
     return database
-
+'''
