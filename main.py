@@ -1,20 +1,20 @@
 import streamlit as st
-import numpy as np
-import pandas as pd
+import page1, page2
 
-# Display a title and some text
-st.title('My First Streamlit App')
-st.write("Here's our first attempt at using data to create a table:")
+PAGES = {
+    "Page 1": page1,
+    "Page 2": page2
+}
 
-# Creating a simple dataframe
-df = pd.DataFrame({
-  'first column': np.arange(1, 11),
-  'second column': np.random.randn(10)
-})
+def main():
+    st.sidebar.title('Navigation')
+    selection = st.sidebar.radio("Go to", list(PAGES.keys()))
 
-# Display the dataframe as a table
-st.write(df)
+    page = PAGES[selection]
 
-# Create a line chart
-st.line_chart(df)
+    with st.spinner(f"Loading {selection} ..."):
+        page.app()
+
+if __name__ == "__main__":
+    main()
 
