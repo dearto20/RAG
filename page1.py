@@ -1,5 +1,5 @@
 import streamlit as st
-import llm_manager
+import llmmanager
 
 def app():
     st.title('Page 1')
@@ -7,6 +7,6 @@ def app():
 
     text = st.text_input('Input Text: ')
     if text:
-        embedding = llm_manager.get_embedding(text)
+        embedding = llmmanager.get_embedding(text)
         st.write(embedding)
 
