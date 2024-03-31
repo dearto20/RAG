@@ -7,7 +7,6 @@ def app():
 
     text = st.text_input('Input Text: ')
     if text:
-        #embedding = llmmanager.get_embedding(text)
-        #st.write(embedding)
-        st.write(text)
+        embedding = llmmanager.get_embedding(text)
+        st.write(embedding)
 
