@@ -19,10 +19,11 @@ def get_distance(vector_a, vector_b):
     return np.sum((np.asarray(vector_a) - np.asarray(vector_b)) ** 2)
 
 def get_completions(text):
-    response = openai_client.post('https://api.openai.com/v1/completions', 
+    response = openai_client.post('https://api.openai.com/v1/chat/completions', 
         json = {'model': 'gpt-3.5-turbo', 'messages': [{'role': 'user', 'content': text}]})
     try:
         return response.json()['choices'][0]['message']['content']
+        #return response.json()
     except:
         print('error in getting completions: ', response.json)
         raise

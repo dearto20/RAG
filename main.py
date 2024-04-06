@@ -1,9 +1,11 @@
 import streamlit as st
-import page1, page2
+import page1, page2, page3, page4
 
 PAGES = {
-    "Page 1": page1,
-    "Page 2": page2
+    "Convert Text into Embedding": page1,
+    "Compare Similarity Using Embedding": page2,
+    "Put Contexts Into Vector DB": page3,
+    "Query Matching Context": page4,
 }
 
 def main():
