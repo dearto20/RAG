@@ -15,8 +15,8 @@ def get_embedding(text):
     response = openai_client.post('https://api.openai.com/v1/embeddings', 
         json = {'input': text, 'model': 'text-embedding-3-small', 'encoding_format': 'float'})
     embedding = response.json()['data'][0]['embedding']
-    return embedding
-    #return response.json()
+    #return embedding
+    return response.json()
 
 def get_distance(vector_a, vector_b):
     return np.sum((np.asarray(vector_a) - np.asarray(vector_b)) ** 2)
