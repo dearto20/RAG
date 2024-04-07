@@ -8,8 +8,8 @@ CHUNK_SIZE = 10
 def app():
     db = llmmanager.get_database()
 
-    st.title('Configure RAG Database')
-    st.write('Enter Sentences')
+    st.title('Configure RAG')
+    st.write('Put Contexts into Vector DB')
 
     if st.button("Init Database"):
         try:
