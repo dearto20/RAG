@@ -2,10 +2,9 @@ import streamlit as st
 import llmmanager
 
 def app():
-    st.title('Page 1')
-    st.write('문장을 Embedding으로 변환')
+    st.title('Convert Sentence to Embedding')
+    st.write('Enter Sentence')
 
-    text = st.text_input('입력: ')
+    text = st.text_input('Input: ')
     if text:
         st.write(llmmanager.get_embedding(text))
-
