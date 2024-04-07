@@ -8,8 +8,8 @@ CHUNK_SIZE = 10
 def app():
     db = llmmanager.get_database()
 
-    st.title('Page 3')
-    st.write('This is page 3')
+    st.title('Configure RAG Database')
+    st.write('Enter Sentences')
 
     if st.button("Init Database"):
         try:
