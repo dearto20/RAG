@@ -4,13 +4,13 @@ import page1, page2, page3, page4
 PAGES = {
     #"Convert Sentence into Embedding": page1,
     #"Compare Similarity Using Embedding": page2,
-    "Add Contexts Into RAG DB": page3,
-    "Query Matching Context": page4,
+    "Add Sentence Into RAG DB": page3,
+    "Find Out Matching Context": page4,
 }
 
 def main():
     st.sidebar.title('Navigation')
-    selection = st.sidebar.radio("Go to", list(PAGES.keys()))
+    selection = st.sidebar.radio("Pages", list(PAGES.keys()))
 
     page = PAGES[selection]
 
