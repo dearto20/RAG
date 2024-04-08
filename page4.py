@@ -42,6 +42,7 @@ def app():
         queried_context = '\n'.join(['- ' + chunk_info for chunk_info in context])
         prompt += f'Based on Queried Context:\n\n{queried_context}\n\n'
     prompt += f'Ask the Question: {query}'
+    print(prompt)
     st.write(prompt)
     st.divider()
     answer = llmmanager.get_completions(prompt)
