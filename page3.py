@@ -20,7 +20,7 @@ def app():
     st.write('Add New Embeddings into DB')
 
     context = st.text_area('Sentences')
-    source = st.selectbox('Source', ('Runestone', 'Etc'))
+    source = st.selectbox('Source', ('KG', 'Runestone', 'Etc'))
     chunk_size = int(st.radio("Chunk Size", ["16", "32", "64"]))
 
     if st.button("Save Embeddings"):
