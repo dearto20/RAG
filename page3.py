@@ -43,7 +43,7 @@ def app():
                 words = re.findall(r'\S+', sentence)
                 index = 0
                 while cur_words := words[index:index + chunk_size]:
-                    index += len(cur_words) - 5 > 0 if len(cur_words) > 2 else len(cur_words)
+                    index += chunk_size // 4
                     chunk = ' '.join(cur_words)
                     st.write(f'Chunk: {chunk}')
                     add_chunk(chunk, sentence) 
