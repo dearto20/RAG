@@ -41,8 +41,11 @@ def app():
             context.append(current_context)
         queried_context = '\n'.join(['- ' + chunk_info for chunk_info in context])
         st.write(queried_context)
+        st.divider()
         
         prompt += f'Based on Queried Context:\n\n{queried_context}\n\n'
+        st.write(prompt)
+        st.divider()
     prompt += f'Ask the Question: {query}'
     st.write(prompt)
     st.divider()
