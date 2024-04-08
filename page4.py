@@ -46,7 +46,7 @@ def app():
         prompt += f'Based on Queried Context:\n\n{queried_context}\n\n'
         st.write(prompt)
         st.divider()
-    prompt += f'Ask the Question: {query}'
+    prompt += f'Answer the Question: {query}'
     st.write(prompt)
     st.divider()
     answer = llmmanager.get_completions(prompt)
