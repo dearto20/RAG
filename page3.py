@@ -8,7 +8,7 @@ def app():
 
     st.title('Personal Context Management')
     
-    st.write('Remove All Embeddings from the DB')
+    st.write('Remove All Embeddings in the DB')
     if st.button("Reset Database"):
         try:
             db.delete_collection('context')
