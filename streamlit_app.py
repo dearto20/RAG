@@ -3,7 +3,7 @@ import page3, page4
 
 PAGES = {
     "Personal Context Management": page3,
-    "Find Out Matching Context": page4,
+    "Query with Personal Context": page4,
 }
 
 def main():

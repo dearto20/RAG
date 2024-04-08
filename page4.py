@@ -15,18 +15,17 @@ def get_chunk_infos(query):
     return chunk_infos[:5]
 
 def app():
-    st.title('Query Matching Context')
+    st.title('Query with Personal Context')
 
-    query = st.text_input('Query: ')
+    query = st.text_input('Query')
     if query:
         print('Query: ', query)
         chunk_infos = get_chunk_infos(query)
         chunk_infos = chunk_infos[:5]
     else:
-        print('Query is Empty')
         return
 
-    st.write('Similar Ones: ')
+    st.write('Search Top 5 Sentences with Highest Similarity from Personal Context')
     st.table(pd.DataFrame(chunk_infos, columns=['distance', 'chunk', 'sentence', 'source']))
 
     use_llm = st.checkbox('Use LLM')
