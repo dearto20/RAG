@@ -28,9 +28,9 @@ def app():
     st.write('Top 5 Sentences with Highest Similarity from Personal Context')
     st.table(pd.DataFrame(chunk_infos, columns=['distance', 'chunk', 'sentence', 'source']))
 
-    query_type = st.radio("Ask the LLM", ["With RAG", "Without RAG"])
+    query_type = st.radio("Ask the LLM", ["With RAG", "Don't Use RAG"])
     prompt = ''
-    if query_type == "Use RAG":
+    if query_type == "With RAG":
         visited = set()
         context = []
         for chunk_info in chunk_infos:
@@ -40,8 +40,8 @@ def app():
             visited.add(current_context)
             context.append(current_context)
         queried_context = '\n'.join(['- ' + chunk_info for chunk_info in context])
-        prompt += f'Based on Queried Context:\n\n{queried_context}\n\n'
-    prompt += f'Answer the Question: {query}'
+        prompt += f'Based on Queried Context,\n\n{queried_context}\n\n'
+    prompt += f'Answer the Question, {query}'
     st.write(prompt)
     st.divider()
     answer = llmmanager.get_completions(prompt)
