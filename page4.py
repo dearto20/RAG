@@ -15,8 +15,7 @@ def get_chunk_infos(query):
     return chunk_infos[:5]
 
 def app():
-    st.title('Ask LLM with or without RAG')
-    st.write('This is page 4')
+    st.title('Query Matching Context')
 
     query = st.text_input('Query: ')
     if query:

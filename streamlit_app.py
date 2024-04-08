@@ -4,7 +4,7 @@ import page1, page2, page3, page4
 PAGES = {
     #"Convert Sentence into Embedding": page1,
     #"Compare Similarity Using Embedding": page2,
-    "Put Contexts Into Vector DB": page3,
+    "Put Contexts Into RAG DB": page3,
     "Query Matching Context": page4,
 }
 

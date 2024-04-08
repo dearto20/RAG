@@ -8,7 +8,7 @@ CHUNK_SIZE = 10
 def app():
     db = llmmanager.get_database()
 
-    st.title('Configure RAG')
+    st.title('Put Contexts Into RAG DB')
 
     if st.button("Reset Database"):
         try:
