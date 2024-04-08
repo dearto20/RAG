@@ -15,7 +15,7 @@ def get_chunk_infos(query):
     return chunk_infos[:5]
 
 def app():
-    st.title('Query with Personal Context')
+    st.title('Ask LLM with Personal Context')
 
     query = st.text_input('Query')
     if query:
