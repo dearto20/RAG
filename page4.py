@@ -35,11 +35,11 @@ def app():
         context = []
         for chunk_info in chunk_infos:
             current_context = chunk_info[1]
-            st.write(current_context)
             if current_context in visited:
                 continue
             visited.add(current_context)
             context.append(current_context)
+        st.write(context)
         queried_context = '\n'.join(['- ' + chunk_info for chunk_info in context])
         prompt += f'Based on Queried Context:\n\n{queried_context}\n\n'
     prompt += f'Ask the Question: {query}'
