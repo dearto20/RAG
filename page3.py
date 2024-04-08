@@ -36,14 +36,14 @@ def app():
                 continue
 
             count = count + 1
-            st.write(f'Sentence {count}: {sentence}')
-            add_chunk(sentence, sentence)
+            #st.write(f'Sentence {count}: {sentence}')
+            #add_chunk(sentence, sentence)
 
             if chunk_size > 0:
                 words = re.findall(r'\S+', sentence)
                 index = 0
                 while cur_words := words[index:index + chunk_size]:
-                    index += len(cur_words) - 2 if len(cur_words) > 2 else len(cur_words)
+                    index += len(cur_words) - 5 if len(cur_words) > 2 else len(cur_words)
                     chunk = ' '.join(cur_words)
                     st.write(f'Chunk: {chunk}')
                     add_chunk(chunk, sentence) 
