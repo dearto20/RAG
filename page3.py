@@ -19,7 +19,7 @@ def app():
     st.divider()
     st.write('Add New Embeddings into DB')
 
-    context = st.text_area('Sentences', value=st.session_state.get('context', ''), key= 'context_area')
+    context = st.text_area('Sentences', key = 'context', value = st.session_state.get('context', ''))
     source = st.selectbox('Source', ('KG', 'Runestone', 'Etc'))
     chunk_size = int(st.radio("Chunk Size", ["16", "32", "64"]))
 
@@ -28,7 +28,7 @@ def app():
         collection = db.get_or_create_collection('context')
         def add_chunk(chunk, sentence):
             embedding = llmmanager.get_embedding(chunk)
-            collection.add(ids=[str(uuid.uuid4())], embeddings=[embedding], metadatas=[{'chunk': chunk, 'sentence': sentence, 'source': source}])
+            collection.add(ids = [str(uuid.uuid4())], embeddings = [embedding], metadatas = [{'chunk': chunk, 'sentence': sentence, 'source': source}])
 
         for sentence in re.split(r'\.|\n\n', context):
             sentence = re.sub(r'\s{2, }', ' ', sentence).strip()
