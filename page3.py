@@ -7,7 +7,8 @@ def app():
     db = llmmanager.get_database()
 
     st.title('Personal Context Management')
-
+    
+    st.divider()
     st.write('Remove All Sentences from the DB')
     if st.button("Reset Database"):
         try:
@@ -15,7 +16,8 @@ def app():
         except ValueError:
             pass
         st.toast('Reset Finished')
-
+    
+    st.divider()
     context = st.text_area('Sentence')
     source = st.selectbox('Source', ('Runestone', 'Etc'))
     chunk_size = int(st.radio("Chunk Size", ["16", "32", "64"]))
