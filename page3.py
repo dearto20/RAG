@@ -35,7 +35,7 @@ def app():
             embedding = llmmanager.get_embedding(chunk)
             collection.add(ids = [str(uuid.uuid4())], embeddings = [embedding], metadatas = [{'chunk': chunk, 'sentence': sentence, 'source': source}])
         
-        for sentence in re.split(r'\.|\n\n', value):
+        for sentence in re.split(r'\.|\n\n', context):
             sentence = re.sub(r'\s{2, }', ' ', sentence).strip()
             if not sentence:
                 continue
