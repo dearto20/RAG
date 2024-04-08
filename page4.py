@@ -31,6 +31,7 @@ def app():
     query_type = st.radio("Ask the LLM", ["Use RAG", "Don't Use RAG"])
     prompt = ''
     if query_type == "Use RAG":
+        st.write("hit")
         visited = set()
         context = []
         for chunk_info in chunk_infos:
@@ -41,8 +42,9 @@ def app():
             context.append(current_context)
         queried_context = '\n'.join(['- ' + chunk_info for chunk_info in context])
         prompt += f'Based on Queried Context:\n\n{queried_context}\n\n'
+    else:
+        st.write("no hit")
     prompt += f'Ask the Question: {query}'
-    print(prompt)
     st.write(prompt)
     st.divider()
     answer = llmmanager.get_completions(prompt)
