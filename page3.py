@@ -34,7 +34,9 @@ def app():
             if not sentence:
                 continue
 
+            st.write(f'Sentence: {sentence}')
             add_chunk(sentence, sentence)
+
             if chunk_size > 0:
                 words = re.findall(r'\S+', sentence)
                 index = 0
