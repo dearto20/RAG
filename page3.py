@@ -10,7 +10,7 @@ def app():
 
     st.title('Add Sentences Into RAG DB')
 
-    st.write('Remove All Sentences in the DB')
+    st.write('Remove All Sentences from the DB')
     if st.button("Reset Database"):
         try:
             db.delete_collection('context')
@@ -21,6 +21,7 @@ def app():
     context = st.text_area('Sentence')
     source = st.selectbox('Source', ('Runestone', 'Etc'))
     use_chunk = st.checkbox('Split into Chunks')
+    chunk_size = st.radio("Chunk Size", ["0", "32", "64"])
 
     if st.button("Push Into RAG DB"):
         collection = db.get_or_create_collection('context')
@@ -36,10 +37,10 @@ def app():
             st.write(f'Sentence: {sentence}')
             add_chunk(sentence, sentence)
 
-            if use_chunk:
+            if chunk_size:
                 words = re.findall(r'\S+', sentence)
                 index = 0
-                while cur_words := words[index:index + CHUNK_SIZE]:
+                while cur_words := words[index:index + chunk_size]:
                     index += CHUNK_SIZE // 2
                     chunk = ' '.join(cur_words)
                     st.write(f'Chunk: {chunk}')

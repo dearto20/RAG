@@ -1,10 +1,8 @@
 import streamlit as st
-import page1, page2, page3, page4
+import page3, page4
 
 PAGES = {
-    #"Convert Sentence into Embedding": page1,
-    #"Compare Similarity Using Embedding": page2,
-    "Add Sentence Into RAG DB": page3,
+    "Add Sentences Into RAG DB": page3,
     "Find Out Matching Context": page4,
 }
 
