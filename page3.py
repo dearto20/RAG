@@ -26,15 +26,16 @@ def app():
     source = st.selectbox('Source', ('KG', 'Runestone', 'Etc'))
     chunk_size = int(st.radio("Chunk Size", ["16", "32", "64"]))
 
+    def clear_sentence():
+        st.session_state['context'] = ""
+
     if st.button("Save Embeddings", on_click = clear_sentence):
         st.session_state['context'] = ""
         collection = db.get_or_create_collection('context')
         def add_chunk(chunk, sentence):
             embedding = llmmanager.get_embedding(chunk)
             collection.add(ids = [str(uuid.uuid4())], embeddings = [embedding], metadatas = [{'chunk': chunk, 'sentence': sentence, 'source': source}])
-        def clear_sentence():
-            st.session_state['context'] = ""
-
+        
         for sentence in re.split(r'\.|\n\n', context):
             sentence = re.sub(r'\s{2, }', ' ', sentence).strip()
             if not sentence:
