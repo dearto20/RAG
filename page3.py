@@ -27,6 +27,7 @@ def app():
     chunk_size = int(st.radio("Chunk Size", ["16", "32", "64"]))
 
     def clear_text_area():
+        st.write("hit")
         collection = db.get_or_create_collection('context')
         def add_chunk(chunk, sentence):
             embedding = llmmanager.get_embedding(chunk)
