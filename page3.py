@@ -44,4 +44,5 @@ def app():
                     index += chunk_size // 2
                     chunk = ' '.join(cur_words)
                     st.write(f'Chunk: {chunk}')
-                    add_chunk(chunk, sentence) 
+                    add_chunk(chunk, sentence)
+        st.write("", context)
