@@ -45,3 +45,4 @@ def app():
                     chunk = ' '.join(cur_words)
                     st.write(f'Chunk: {chunk}')
                     add_chunk(chunk, sentence) 
+                st.toast('Save Finished')
