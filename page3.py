@@ -19,7 +19,7 @@ def app():
     st.divider()
     st.write('Add New Embeddings into DB')
 
-    context = st.text_area('Sentences')
+    context = st.text_area('Sentences', height = 8)
     source = st.selectbox('Source', ('KG', 'Runestone', 'Etc'))
     chunk_size = int(st.radio("Chunk Size", ["16", "32", "64"]))
 
