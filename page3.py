@@ -27,9 +27,6 @@ def app():
     chunk_size = int(st.radio("Chunk Size", ["16", "32", "64"]))
 
     def clear_text_area():
-        st.session_state['context'] = ""
-
-    if st.button("Save Embeddings"):
         collection = db.get_or_create_collection('context')
         def add_chunk(chunk, sentence):
             embedding = llmmanager.get_embedding(chunk)
@@ -51,4 +48,7 @@ def app():
                     chunk = ' '.join(cur_words)
                     st.write(f'Chunk: {chunk}')
                     add_chunk(chunk, sentence)
-        clear_text_area()
+        st.session_state['context'] = ""
+
+    st.button("Save Embeddings", on_click = clear_text_area):
+        
