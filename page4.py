@@ -12,7 +12,7 @@ def get_chunk_infos(query):
     for id, embedding, metadata in zip(result['ids'], result['embeddings'], result['metadatas']):
         chunk_infos.append([llmmanager.get_distance(query_embedding, embedding), metadata['chunk'], metadata['sentence'], metadata['source']])
     chunk_infos.sort(key=lambda x: x[0])
-    return chunk_infos[:5]
+    return chunk_infos[:100]
 
 def app():
     st.title('Ask LLM with Personal Context')
