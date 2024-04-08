@@ -17,7 +17,7 @@ def app():
         st.toast('Reset Finished')
     
     st.divider()
-    st.write('Add New Sentences into the DB')
+    st.write('Add New Embeddings into the DB')
 
     context = st.text_area('Sentences')
     source = st.selectbox('Source', ('Runestone', 'Etc'))
