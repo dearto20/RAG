@@ -8,7 +8,6 @@ def app():
 
     st.title('Personal Context Management')
     
-    st.divider()
     st.write('Remove All Sentences from the DB')
     if st.button("Reset Database"):
         try:
@@ -18,7 +17,9 @@ def app():
         st.toast('Reset Finished')
     
     st.divider()
-    context = st.text_area('Sentence')
+    st.write('Add New Sentences into the DB')
+
+    context = st.text_area('Sentences')
     source = st.selectbox('Source', ('Runestone', 'Etc'))
     chunk_size = int(st.radio("Chunk Size", ["16", "32", "64"]))
 
