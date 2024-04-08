@@ -1,7 +1,7 @@
 import streamlit as st
 import llmmanager
 
-def main():
+def app():
     text1 = st.text_input('Source')
     text2 = st.text_input('Target')
 

@@ -5,20 +5,19 @@ import re
 
 CHUNK_SIZE = 10
 
-def main():
+def app():
     db = llmmanager.get_database()
 
     st.title('Configure RAG')
-    st.write('Put Contexts into Vector DB')
 
-    if st.button("Init Database"):
+    if st.button("Reset Database"):
         try:
             db.delete_collection('context')
         except ValueError:
             pass
-        st.toast('Init Finished');
+        st.toast('Reset Finished');
 
-    ctx = st.text_area('Context')
+    context = st.text_area('Context')
     source = st.text_input('Source')
     use_chunk = st.checkbox('Split into Chunks')
 
@@ -28,7 +27,7 @@ def main():
             embedding = llmmanager.get_embedding(chunk)
             collection.add(ids=[str(uuid.uuid4())], embeddings=[embedding], metadatas=[{'chunk': chunk, 'sentence': sentence, 'source': source}])
 
-        for sentence in re.split(r'\.|\n\n', ctx):
+        for sentence in re.split(r'\.|\n\n', context):
             sentence = re.sub(r'\s{2, }', ' ', sentence).strip()
             if not sentence:
                 continue

@@ -2,8 +2,8 @@ import streamlit as st
 import page1, page2, page3, page4
 
 PAGES = {
-    "Convert Text into Embedding": page1,
-    "Compare Similarity Using Embedding": page2,
+    #"Convert Sentence into Embedding": page1,
+    #"Compare Similarity Using Embedding": page2,
     "Put Contexts Into Vector DB": page3,
     "Query Matching Context": page4,
 }
@@ -15,8 +15,7 @@ def main():
     page = PAGES[selection]
 
     with st.spinner(f"Loading {selection} ..."):
-        page.main()
+        page.app()
 
 if __name__ == "__main__":
     main()
-

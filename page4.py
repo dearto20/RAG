@@ -14,7 +14,7 @@ def get_chunk_infos(query):
     chunk_infos.sort(key=lambda x: x[0])
     return chunk_infos[:5]
 
-def main():
+def app():
     st.title('Ask LLM with or without RAG')
     st.write('This is page 4')
 
