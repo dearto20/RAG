@@ -5,7 +5,7 @@ import re
 
 CHUNK_SIZE = 10
 
-def app():
+def main():
     db = llmmanager.get_database()
 
     st.title('Configure RAG')

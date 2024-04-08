@@ -1,7 +1,7 @@
 import streamlit as st
 import llmmanager
 
-def app():
+def main():
     st.title('Convert Sentence to Embedding')
     st.write('Enter Sentence')
 
