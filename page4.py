@@ -25,30 +25,24 @@ def app():
     else:
         return
 
-    st.write('Search Top 5 Sentences with Highest Similarity from Personal Context')
+    st.write('Top 5 Sentences with Highest Similarity from Personal Context')
     st.table(pd.DataFrame(chunk_infos, columns=['distance', 'chunk', 'sentence', 'source']))
 
-    use_llm = st.checkbox('Use LLM')
-    if (use_llm):
-        use_rag = st.checkbox('Use RAG')
-        use_sentence = st.checkbox('Do Not Use Chunk')
-        st.write('Prompt: ')
-
-        prompt = ''
-        if use_rag:
-            visited = set()
-            context = []
-            for chunk_info in chunk_infos:
-                current_context = chunk_info[2] if use_sentence else chunk_info[1]
-                if current_context in visited:
-                    continue
-                visited.add(current_context)
-                context.append(current_context)
-            queried_context = '\n'.join(['- ' + chunk_info for chunk_info in context])
-            prompt += f'Based on Queried Contexts:\n\n{queried_context}\n\n'
-        prompt += f'Answer the Question: {query}'
-        st.write(prompt)
-        st.divider()
-        answer = llmmanager.get_completions(prompt)
-        st.write(answer)
-
+    query_type = st.radio("Ask the LLM", ["Use RAG", "Don't Use RAG"])
+    prompt = ''
+    if query_type == "Use RAG":
+        visited = set()
+        context = []
+        for chunk_info in chunk_infos:
+            current_context = chunk_info[1]
+            if current_context in visited:
+                continue
+            visited.add(current_context)
+            context.append(current_context)
+        queried_context = '\n'.join(['- ' + chunk_info for chunk_info in context])
+        prompt += f'Based on Queried Context:\n\n{queried_context}\n\n'
+    prompt += f'Ask the Question: {query}'
+    st.write(prompt)
+    st.divider()
+    answer = llmmanager.get_completions(prompt)
+    st.write(answer)
