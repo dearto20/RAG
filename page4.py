@@ -40,8 +40,8 @@ def app():
             visited.add(current_context)
             context.append(current_context)
         queried_context = '\n'.join(['- ' + chunk_info for chunk_info in context])
-        prompt += f'Based on Queried Context,\n\n{queried_context}\n\n'
-    prompt += f'Answer the Question, {query}'
+        prompt += f'Based on Queried Context:\n\n{queried_context}\n\n'
+    prompt += f'Answer the Question: {query}'
     st.write(prompt)
     st.divider()
     answer = llmmanager.get_completions(prompt)
