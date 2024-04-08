@@ -31,19 +31,17 @@ def app():
     query_type = st.radio("Ask the LLM", ["Use RAG", "Don't Use RAG"])
     prompt = ''
     if query_type == "Use RAG":
-        st.write("hit")
         visited = set()
         context = []
         for chunk_info in chunk_infos:
             current_context = chunk_info[1]
+            st.write(current_context)
             if current_context in visited:
                 continue
             visited.add(current_context)
             context.append(current_context)
         queried_context = '\n'.join(['- ' + chunk_info for chunk_info in context])
         prompt += f'Based on Queried Context:\n\n{queried_context}\n\n'
-    else:
-        st.write("no hit")
     prompt += f'Ask the Question: {query}'
     st.write(prompt)
     st.divider()
