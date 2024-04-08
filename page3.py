@@ -26,7 +26,9 @@ def app():
     source = st.selectbox('Source', ('KG', 'Runestone', 'Etc'))
     chunk_size = int(st.radio("Chunk Size", ["16", "32", "64"]))
 
+    value = ""
     def clear_text_area():
+        value = context
         st.session_state['context'] = ""
 
     if st.button("Save Embeddings", on_click = clear_text_area):
@@ -35,7 +37,7 @@ def app():
             embedding = llmmanager.get_embedding(chunk)
             collection.add(ids = [str(uuid.uuid4())], embeddings = [embedding], metadatas = [{'chunk': chunk, 'sentence': sentence, 'source': source}])
         
-        for sentence in re.split(r'\.|\n\n', context):
+        for sentence in re.split(r'\.|\n\n', value):
             sentence = re.sub(r'\s{2, }', ' ', sentence).strip()
             if not sentence:
                 continue
