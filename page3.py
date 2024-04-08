@@ -43,6 +43,7 @@ def app():
                 words = re.findall(r'\S+', sentence)
                 index = 0
                 while cur_words := words[index:index + chunk_size]:
+                    index += chunk_size - len(cur_words)
                     index += chunk_size // 2
                     chunk = ' '.join(cur_words)
                     st.write(f'Chunk: {chunk}')
