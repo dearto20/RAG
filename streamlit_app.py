@@ -15,7 +15,7 @@ def main():
     page = PAGES[selection]
 
     with st.spinner(f"Loading {selection} ..."):
-        page.app()
+        page.main()
 
 if __name__ == "__main__":
     main()
