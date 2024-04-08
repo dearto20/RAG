@@ -27,12 +27,12 @@ def app():
     chunk_size = int(st.radio("Chunk Size", ["16", "32", "64"]))
 
     def clear_text_area():
-        st.write("hit")
         collection = db.get_or_create_collection('context')
         def add_chunk(chunk, sentence):
             embedding = llmmanager.get_embedding(chunk)
             collection.add(ids = [str(uuid.uuid4())], embeddings = [embedding], metadatas = [{'chunk': chunk, 'sentence': sentence, 'source': source}])
         
+        print(context)
         for sentence in re.split(r'\.|\n\n', context):
             sentence = re.sub(r'\s{2, }', ' ', sentence).strip()
             if not sentence:
@@ -49,7 +49,6 @@ def app():
                     chunk = ' '.join(cur_words)
                     st.write(f'Chunk: {chunk}')
                     add_chunk(chunk, sentence)
-
         st.session_state['context'] = ""
 
     st.button("Save Embeddings", on_click = clear_text_area)
