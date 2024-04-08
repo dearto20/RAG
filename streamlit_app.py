@@ -2,7 +2,7 @@ import streamlit as st
 import page3, page4
 
 PAGES = {
-    "Manage Personal Context": page3,
+    "Manage Personal Context in DB": page3,
     "Ask LLM with Personal Context": page4,
 }
 
