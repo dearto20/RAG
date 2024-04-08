@@ -39,8 +39,9 @@ def app():
                 continue
             visited.add(current_context)
             context.append(current_context)
-        st.write(context)
         queried_context = '\n'.join(['- ' + chunk_info for chunk_info in context])
+        st.write(queried_context)
+        
         prompt += f'Based on Queried Context:\n\n{queried_context}\n\n'
     prompt += f'Ask the Question: {query}'
     st.write(prompt)
