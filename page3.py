@@ -8,20 +8,21 @@ CHUNK_SIZE = 10
 def app():
     db = llmmanager.get_database()
 
-    st.title('Put Contexts Into RAG DB')
+    st.title('Add Contexts Into RAG DB')
 
+    st.write('Remove All Contexts in the DB')
     if st.button("Reset Database"):
         try:
             db.delete_collection('context')
         except ValueError:
             pass
-        st.toast('Reset Finished');
+        st.toast('Reset Finished')
 
-    context = st.text_area('Context')
-    source = st.text_input('Source')
+    context = st.text_area('Sentence')
+    source = st.selectbox('Source', ('Runestone', 'Etc'))
     use_chunk = st.checkbox('Split into Chunks')
 
-    if st.button("Read Sentence"):
+    if st.button("Push Contexts"):
         collection = db.get_or_create_collection('context')
         def add_chunk(chunk, sentence):
             embedding = llmmanager.get_embedding(chunk)
