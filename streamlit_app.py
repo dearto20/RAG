@@ -2,7 +2,7 @@ import streamlit as st
 import page3, page4
 
 PAGES = {
-    "Add Sentences Into RAG DB": page3,
+    "Personal Context Management": page3,
     "Find Out Matching Context": page4,
 }
 

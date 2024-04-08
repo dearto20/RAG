@@ -3,12 +3,10 @@ import llmmanager
 import uuid
 import re
 
-CHUNK_SIZE = 10
-
 def app():
     db = llmmanager.get_database()
 
-    st.title('Add Sentences Into RAG DB')
+    st.title('Personal Context Management')
 
     st.write('Remove All Sentences from the DB')
     if st.button("Reset Database"):
