@@ -25,7 +25,7 @@ def app():
     else:
         return
 
-    st.write('Top 5 Sentences with Highest Similarity from Personal Context')
+    st.write('Top 10 Chunks with Highest Similarity from Personal Context')
     st.table(pd.DataFrame(chunk_infos, columns=['distance', 'chunk', 'sentence', 'source']))
 
     query_type = st.radio("Ask the LLM", ["With RAG", "Don't Use RAG"])
