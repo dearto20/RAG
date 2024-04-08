@@ -22,7 +22,7 @@ def app():
     if 'context' not in st.session_state:
         st.session_state['context'] = ""
 
-    context = st.text_area('Sentences', key = 'context', value = st.session_state.get('context', ''))
+    context = st.text_area('Sentences', key = 'context', value = st.session_state['context'])
     source = st.selectbox('Source', ('KG', 'Runestone', 'Etc'))
     chunk_size = int(st.radio("Chunk Size", ["16", "32", "64"]))
 
