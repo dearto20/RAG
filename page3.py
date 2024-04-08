@@ -30,7 +30,6 @@ def app():
         st.session_state['context'] = ""
 
     if st.button("Save Embeddings", on_click = clear_sentence):
-        st.session_state['context'] = ""
         collection = db.get_or_create_collection('context')
         def add_chunk(chunk, sentence):
             embedding = llmmanager.get_embedding(chunk)
