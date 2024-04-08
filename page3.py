@@ -8,7 +8,7 @@ def app():
 
     st.title('Personal Context Management')
     
-    st.write('Remove All Sentences from the DB')
+    st.write('Remove All Embeddings from the DB')
     if st.button("Reset Database"):
         try:
             db.delete_collection('context')
@@ -23,7 +23,7 @@ def app():
     source = st.selectbox('Source', ('Runestone', 'Etc'))
     chunk_size = int(st.radio("Chunk Size", ["16", "32", "64"]))
 
-    if st.button("Push Into RAG DB"):
+    if st.button("Save Embeddings"):
         collection = db.get_or_create_collection('context')
         def add_chunk(chunk, sentence):
             embedding = llmmanager.get_embedding(chunk)
