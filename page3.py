@@ -20,8 +20,7 @@ def app():
 
     context = st.text_area('Sentence')
     source = st.selectbox('Source', ('Runestone', 'Etc'))
-    use_chunk = st.checkbox('Split into Chunks')
-    chunk_size = int(st.radio("Chunk Size", ["0", "32", "64"]))
+    chunk_size = int(st.radio("Chunk Size", ["16", "32", "64"]))
 
     if st.button("Push Into RAG DB"):
         collection = db.get_or_create_collection('context')
@@ -41,7 +40,7 @@ def app():
                 words = re.findall(r'\S+', sentence)
                 index = 0
                 while cur_words := words[index:index + chunk_size]:
-                    index += CHUNK_SIZE // 2
+                    index += chunk_size // 2
                     chunk = ' '.join(cur_words)
                     st.write(f'Chunk: {chunk}')
                     add_chunk(chunk, sentence) 
