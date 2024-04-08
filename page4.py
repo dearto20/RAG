@@ -21,7 +21,7 @@ def app():
     if query:
         print('Query: ', query)
         chunk_infos = get_chunk_infos(query)
-        chunk_infos = chunk_infos[:5]
+        chunk_infos = chunk_infos[:10]
     else:
         return
 
