@@ -29,12 +29,14 @@ def app():
             embedding = llmmanager.get_embedding(chunk)
             collection.add(ids = [str(uuid.uuid4())], embeddings = [embedding], metadatas = [{'chunk': chunk, 'sentence': sentence, 'source': source}])
 
+        count = 0
         for sentence in re.split(r'\.|\n\n', context):
             sentence = re.sub(r'\s{2, }', ' ', sentence).strip()
             if not sentence:
                 continue
 
-            st.write(f'Sentence: {sentence}')
+            count = count + 1
+            st.write(f'Sentence {count}: {sentence}')
             add_chunk(sentence, sentence)
 
             if chunk_size > 0:
