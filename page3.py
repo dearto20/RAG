@@ -50,5 +50,4 @@ def app():
                     add_chunk(chunk, sentence)
         st.session_state['context'] = ""
 
-    st.button("Save Embeddings", on_click = clear_text_area):
-        
+    st.button("Save Embeddings", on_click = clear_text_area)
