@@ -1,5 +1,5 @@
 import streamlit as st
-import page3, page4, page5, page6
+import page1, page2, page3, page4
 
 PAGES = {
     "Manage Personal Context in DB": page1,
