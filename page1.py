@@ -6,7 +6,7 @@ import re
 def app():
     db = llmmanager.get_database()
 
-    st.title('Index Personal Context in the Local DB')
+    st.title('Manage Personal Context in the Local DB')
     
     st.write('Remove All Embeddings in DB')
     if st.button("Reset Database"):
