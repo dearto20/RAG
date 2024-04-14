@@ -2,9 +2,9 @@ import streamlit as st
 import page1, page2, page3, page4
 
 PAGES = {
-    "Manage Personal Context in DB": page1,
+    "Manage Personal Context in the DB": page1,
     "Ask LLM with Personal Context": page2,
-    "(w/Llamaindex) Manage Personal Context in DB": page3,
+    "(w/Llamaindex) Manage Personal Context in the DB": page3,
     "(w/Llamaindex) Ask LLM with Personal Context": page4,
 }
 
