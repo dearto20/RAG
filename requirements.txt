@@ -4,4 +4,3 @@ numpy==1.26.4
 streamlit==1.32.2
 tomli==2.0.1
 pysqlite3-binary==0.5.2
-llama-index
