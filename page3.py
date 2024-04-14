@@ -49,7 +49,7 @@ def app():
     Settings.text_splitter = text_splitter    
         
     st.write('Convert the Context into Embeddings and Save')
-    if st.button("Save the Embeddings"):
+    if st.button("Save to the Database"):
         index = VectorStoreIndex.from_documents(
             documents, storage_context = storage_context,
         )
