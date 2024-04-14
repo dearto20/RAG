@@ -9,7 +9,7 @@ def app():
     st.title('Manage Context in the Database')
     
     st.write('Remove All Embeddings in the Database')
-    if st.button("Reset Database"):
+    if st.button("Reset the Database"):
         try:
             db.delete_collection('context')
         except ValueError:
