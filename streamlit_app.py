@@ -2,10 +2,10 @@ import streamlit as st
 import page1, page2, page3, page4
 
 PAGES = {
-    "Context Indexing and Storing": page1,
-    "Context Retrieval and Querying": page2,
-    "(w/Llamaindex) Context Indexing and Storing": page3,
-    "(w/Llamaindex) Context Retrieval and Querying": page4,
+    "(w/o Llamaindex) Context Indexing and Storing": page1,
+    "(w/o Llamaindex) Context Retrieval and Querying": page2,
+    "(w/ Llamaindex) Context Indexing and Storing": page3,
+    "(w/ Llamaindex) Context Retrieval and Querying": page4,
 }
 
 def main():
