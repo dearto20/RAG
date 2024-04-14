@@ -51,6 +51,5 @@ def app():
     if st.button('Save Embeddings'):
         index = VectorStoreIndex.from_documents(
             documents, storage_context = storage_context,
-            transformations = [text_splitter]
         )
         st.toast('Save Finished')
