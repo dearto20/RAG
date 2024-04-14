@@ -33,9 +33,10 @@ def app():
         st.toast('Reset Finished')
     
     st.divider()
-    st.write('Add New Embeddings into the DB')
+    st.write('Add New Embeddings into the DB (Edit the Default Text Shown Below)')
 
-    context = st.text_area('Sentences', height = 196)
+    text = 'I work in Samsung Electronics in Suwon-Si as a software developer, and commuting from Paygyo in Seongnam-si. I enjoy visualizing thoughts into programming code and see them work as expected. Sometimes, I play basketball early in the morning on weekends listening to music alone.'
+    context = st.text_area('Sentences', value = 'text', height = 196)
     source = st.selectbox('Source', ('KG', 'Runestone', 'Etc'))
     chunk_size = int(st.radio("Chunk Size", ['256', '512', '1024']))
 
