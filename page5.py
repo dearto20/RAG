@@ -20,13 +20,14 @@ def app():
     Settings.embed_model = OpenAIEmbedding()
 
     db = llmmanager.get_database()
+    collection_name = 'context_with_llamaindex'
 
     st.title('Manage Personal Context in DB')
     
     st.write('Remove All Embeddings in DB')
     if st.button('Reset Database'):
         try:
-            db.delete_collection('context')
+            db.delete_collection(collection_name)
         except ValueError:
             pass
         st.toast('Reset Finished')
@@ -39,7 +40,7 @@ def app():
     chunk_size = int(st.radio("Chunk Size", ['256', '512', '1024']))
 
     if st.button('Save Embeddings'):
-        collection = db.get_or_create_collection('context')
+        collection = db.get_or_create_collection(collection_name)
         vector_store = ChromaVectorStore(chroma_collection = collection)
         storage_context = StorageContext.from_defaults(vector_store = vector_store)
         doc = Document(text=context)
