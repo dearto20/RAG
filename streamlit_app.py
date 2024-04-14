@@ -9,7 +9,7 @@ PAGES = {
 }
 
 def main():
-    st.sidebar.title('Navigation')
+    st.sidebar.title('Indexing and Query Test With or Without Llamaindex')
     selection = st.sidebar.radio("Pages", list(PAGES.keys()))
 
     page = PAGES[selection]
