@@ -17,13 +17,13 @@ def app():
         st.toast('Reset Finished')
     
     st.divider()
-    st.write('Enter New Data to Add to the Database')
+    st.write('Enter New Context to Add to the Database')
 
-    context = st.text_area('Sentences', height = 196)
+    context = st.text_area('Context', height = 196)
     source = st.selectbox('Source', ('KG', 'Runestone', 'Etc'))
     chunk_size = int(st.radio("Chunk Size", ["16", "32", "64"]))
 
-    if st.button("Convert Data into Embeddings and Save"):
+    if st.button("Convert Context into Embeddings and Save"):
         collection = db.get_or_create_collection('context')
         def add_chunk(chunk, sentence):
             embedding = llmmanager.get_embedding(chunk)
