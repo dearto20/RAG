@@ -44,7 +44,7 @@ def app():
     vector_store = ChromaVectorStore(chroma_collection = collection)
     storage_context = StorageContext.from_defaults(vector_store = vector_store)
     doc = Document(text = context, metadata = {"sentence": context})
-    documents = [doc]        
+    documents = [doc]
     text_splitter = SentenceSplitter(chunk_size = chunk_size, chunk_overlap = 10)
     Settings.text_splitter = text_splitter    
         
