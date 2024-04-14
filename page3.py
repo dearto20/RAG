@@ -48,16 +48,9 @@ def app():
     text_splitter = SentenceSplitter(chunk_size = chunk_size, chunk_overlap = 10)
     Settings.text_splitter = text_splitter    
         
-    if st.button('Set Embeddings'):
+    if st.button('Save Embeddings'):
         index = VectorStoreIndex.from_documents(
             documents, storage_context = storage_context,
             transformations = [text_splitter]
         )
-        st.toast('Set Finished')
-    if st.button('Add Embeddings'):
-        index = VectorStoreIndex.from_vector_store(
-            vector_store, storage_context = storage_context,
-            transformations = [text_splitter]
-        )
-        index.insert(doc)
-        st.toast('Add Finished')
+        st.toast('Save Finished')
