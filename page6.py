@@ -17,6 +17,8 @@ def app():
     else:
         return
     
+    st.write('Query is ' + query)
+    
     collection = db.get_or_create_collection('context')
     vector_store = ChromaVectorStore(chroma_collection = collection)
     storage_context = StorageContext.from_defaults(vector_store = vector_store)
