@@ -1,17 +1,33 @@
-import streamlit as st
 import llmmanager
-import uuid
+from llama_index.core import Document
+from llama_index.core import Settings
+from llama_index.core import StorageContext
+from llama_index.core import VectorStoreIndex
+from llama_index.core.node_parser import SentenceSplitter
+from llama_index.embeddings.openai import OpenAIEmbedding
+from llama_index.vector_stores.chroma import ChromaVectorStore
+from pathlib import Path
+
+import streamlit as st
+import tomli
+import os
 import re
+import uuid
 
 def app():
+    config = tomli.loads(Path('config.toml').read_text())
+    os.environ['OPENAI_API_KEY'] = config['openai_token']
+    Settings.embed_model = OpenAIEmbedding()
+
     db = llmmanager.get_database()
+    collection_name = 'context_with_llamaindex'
 
     st.title('Manage Personal Context in DB')
     
     st.write('Remove All Embeddings in DB')
-    if st.button("Reset Database"):
+    if st.button('Reset Database'):
         try:
-            db.delete_collection('context')
+            db.delete_collection(collection_name)
         except ValueError:
             pass
         st.toast('Reset Finished')
@@ -21,30 +37,17 @@ def app():
 
     context = st.text_area('Sentences', height = 196)
     source = st.selectbox('Source', ('KG', 'Runestone', 'Etc'))
-    chunk_size = int(st.radio("Chunk Size", ["16", "32", "64"]))
+    chunk_size = int(st.radio("Chunk Size", ['256', '512', '1024']))
 
-    if st.button("Save Embeddings"):
-        collection = db.get_or_create_collection('context')
-        def add_chunk(chunk, sentence):
-            embedding = llmmanager.get_embedding(chunk)
-            collection.add(ids = [str(uuid.uuid4())], embeddings = [embedding], metadatas = [{'chunk': chunk, 'sentence': sentence, 'source': source}])
+    if st.button('Save Embeddings'):
+        collection = db.get_or_create_collection(collection_name)
+        vector_store = ChromaVectorStore(chroma_collection = collection)
+        storage_context = StorageContext.from_defaults(vector_store = vector_store)
+        doc = Document(text=context)
+        documents = [doc]
+        index = VectorStoreIndex.from_documents(
+            documents, storage_context = storage_context,
+            transformations = [SentenceSplitter(chunk_size=chunk_size)]
+        )
 
-        count = 0
-        for sentence in re.split(r'\.|\n\n', context):
-            sentence = re.sub(r'\s{2, }', ' ', sentence).strip()
-            if not sentence:
-                continue
-
-            count = count + 1
-            #st.write(f'Sentence {count}: {sentence}')
-            #add_chunk(sentence, sentence)
-
-            if chunk_size > 0:
-                words = re.findall(r'\S+', sentence)
-                index = 0
-                while cur_words := words[index:index + chunk_size]:
-                    index += chunk_size - (chunk_size // 4)
-                    chunk = ' '.join(cur_words)
-                    st.write(f'Chunk: {chunk}')
-                    add_chunk(chunk, sentence) 
         st.toast('Save Finished')
