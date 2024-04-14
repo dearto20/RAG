@@ -4,6 +4,9 @@ import page3, page4
 PAGES = {
     "Manage Personal Context in DB": page3,
     "Ask LLM with Personal Context": page4,
+    "(Llamaindex) Manage Personal Context in DB": page5,
+    "(Llamaindex) Ask LLM with Personal Context": page6,
+    
 }
 
 def main():
