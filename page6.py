@@ -10,7 +10,6 @@ db = llmmanager.get_database()
 
 def app():
     st.title('Ask LLM with Personal Context')
-    st.text_input('Query') = ''
 
     query = st.text_input('Query')
     if query:
