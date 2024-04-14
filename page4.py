@@ -29,6 +29,4 @@ def app():
 
     query_engine = index.as_query_engine()
     answer = query_engine.query(query)
-
-    #st.markdown(str(answer))
     st.markdown(answer)
