@@ -30,7 +30,7 @@ def app():
             db.delete_collection(collection_name)
         except ValueError:
             pass
-        st.toast('Reset Finished')
+        st.toast('Finished')
     
     st.divider()
     st.write('Enter New Context to Add to the Database')
@@ -53,4 +53,4 @@ def app():
         index = VectorStoreIndex.from_documents(
             documents, storage_context = storage_context,
         )
-        st.toast('Save Finished')
+        st.toast('Saved')

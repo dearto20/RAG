@@ -14,7 +14,7 @@ def app():
             db.delete_collection('context')
         except ValueError:
             pass
-        st.toast('Reset Finished')
+        st.toast('Finished')
     
     st.divider()
     st.write('Enter New Context to Add to the Database')
@@ -48,4 +48,4 @@ def app():
                     chunk = ' '.join(cur_words)
                     st.write(f'Chunk: {chunk}')
                     add_chunk(chunk, sentence) 
-        st.toast('Save Finished')
+        st.toast('Saved')
