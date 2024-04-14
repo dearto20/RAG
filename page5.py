@@ -42,7 +42,7 @@ def app():
         collection = db.get_or_create_collection('context')
         vector_store = ChromaVectorStore(chroma_collection = collection)
         storage_context = StorageContext.from_defaults(vector_store = vector_store)
-        doc = Document(text='context')
+        doc = Document(text=context)
         documents = [doc]
         index = VectorStoreIndex.from_documents(
             documents, storage_context = storage_context,
