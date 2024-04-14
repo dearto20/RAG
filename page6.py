@@ -24,7 +24,7 @@ def app():
         vector_store, storage_context = storage_context
     )
 
-    query_index = index.as_query_engine()
+    query_engine = index.as_query_engine()
     answer = query_engine.query('query')
 
     st.write('answer')
