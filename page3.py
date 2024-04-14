@@ -33,7 +33,7 @@ def app():
         st.toast('Reset Finished')
     
     st.divider()
-    st.write('Add New Context')
+    st.write('Enter New Context to Add to the Database')
 
     context = st.text_area('Sentences', height = 196)
     source = st.selectbox('Source', ('KG', 'Runestone', 'Etc'))
