@@ -40,6 +40,12 @@ def app():
     source = st.selectbox('Source', ('KG', 'Runestone', 'Etc'))
     chunk_size = int(st.radio("Chunk Size", ['256', '512', '1024']))
 
+    collection = db.get_or_create_collection(collection_name)
+    vector_store = ChromaVectorStore(chroma_collection = collection)
+    storage_context = StorageContext.from_defaults(vector_store = vector_store)
+    index = load_index_from_storage(storage_context)
+    st.write(str(index))
+
     if st.button('Save Embeddings'):
         collection = db.get_or_create_collection(collection_name)
         vector_store = ChromaVectorStore(chroma_collection = collection)
