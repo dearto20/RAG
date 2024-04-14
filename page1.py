@@ -24,7 +24,7 @@ def app():
     chunk_size = int(st.radio("Chunk Size", ["16", "32", "64"]))
 
     st.write('Convert the Context into Embeddings and Save')
-    if st.button("Save to the Database"):
+    if st.button("Save the Embeddings"):
         collection = db.get_or_create_collection('context')
         def add_chunk(chunk, sentence):
             embedding = llmmanager.get_embedding(chunk)
