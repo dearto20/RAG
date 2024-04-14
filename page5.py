@@ -2,6 +2,7 @@ import streamlit as st
 import llmmanager
 import uuid
 import re
+from llama_index.core import Document
 
 def app():
     db = llmmanager.get_database()
@@ -24,6 +25,9 @@ def app():
     chunk_size = int(st.radio("Chunk Size", ["16", "32", "64"]))
 
     if st.button("Save Embeddings"):
+        doc = Document(text=context)
+
+
         collection = db.get_or_create_collection('context')
         def add_chunk(chunk, sentence):
             embedding = llmmanager.get_embedding(chunk)
