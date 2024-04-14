@@ -6,9 +6,9 @@ import re
 def app():
     db = llmmanager.get_database()
 
-    st.title('Manage Personal Context in the Local DB')
+    st.title('Manage Context in the Database')
     
-    st.write('Remove All Embeddings in the DB')
+    st.write('Remove All Embeddings in the Database')
     if st.button("Reset Database"):
         try:
             db.delete_collection('context')
@@ -17,13 +17,13 @@ def app():
         st.toast('Reset Finished')
     
     st.divider()
-    st.write('Add New Embeddings into the DB')
+    st.write('Enter New Data to Add to the Database')
 
     context = st.text_area('Sentences', height = 196)
     source = st.selectbox('Source', ('KG', 'Runestone', 'Etc'))
     chunk_size = int(st.radio("Chunk Size", ["16", "32", "64"]))
 
-    if st.button("Save Embeddings"):
+    if st.button("Convert Data into Embeddings and Save"):
         collection = db.get_or_create_collection('context')
         def add_chunk(chunk, sentence):
             embedding = llmmanager.get_embedding(chunk)
