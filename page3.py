@@ -33,7 +33,7 @@ def app():
         st.toast('Reset Finished')
     
     st.divider()
-    st.write('Add New Embeddings into the DB')
+    st.write('Add New Context')
 
     context = st.text_area('Sentences', height = 196)
     source = st.selectbox('Source', ('KG', 'Runestone', 'Etc'))
@@ -48,7 +48,7 @@ def app():
     text_splitter = SentenceSplitter(chunk_size = chunk_size, chunk_overlap = 10)
     Settings.text_splitter = text_splitter    
         
-    if st.button('Save Embeddings'):
+    if st.button('Convert Context into Embeddings and Save'):
         index = VectorStoreIndex.from_documents(
             documents, storage_context = storage_context,
         )
