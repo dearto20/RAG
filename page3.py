@@ -22,7 +22,7 @@ def app():
     db = llmmanager.get_database()
     collection_name = 'context_with_llamaindex'
 
-    st.title('Manage Personal Context in DB')
+    st.title('Index Personal Context in the Local DB')
     
     st.write('Remove All Embeddings in DB')
     if st.button('Reset Database'):

@@ -2,10 +2,10 @@ import streamlit as st
 import page1, page2, page3, page4
 
 PAGES = {
-    "Manage Personal Context in the DB": page1,
-    "Ask LLM with Personal Context": page2,
-    "(w/Llamaindex) Manage Personal Context in the DB": page3,
-    "(w/Llamaindex) Ask LLM with Personal Context": page4,
+    "Index Personal Context in the Local DB": page1,
+    "Retrieve Personal Context and Query LLM": page2,
+    "(w/Llamaindex) Index Personal Context in the Local DB": page3,
+    "(w/Llamaindex) Retrieve Personal Context and Query LLM": page4,
 }
 
 def main():
