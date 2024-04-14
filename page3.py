@@ -24,7 +24,7 @@ def app():
 
     st.title('Manage Personal Context in the Local DB')
     
-    st.write('Remove All Embeddings in DB')
+    st.write('Remove All Embeddings in the DB')
     if st.button('Reset Database'):
         try:
             db.delete_collection(collection_name)
@@ -33,7 +33,7 @@ def app():
         st.toast('Reset Finished')
     
     st.divider()
-    st.write('Add New Embeddings into DB')
+    st.write('Add New Embeddings into the DB')
 
     context = st.text_area('Sentences', height = 196)
     source = st.selectbox('Source', ('KG', 'Runestone', 'Etc'))
