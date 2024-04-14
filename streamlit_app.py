@@ -9,7 +9,7 @@ PAGES = {
 }
 
 def main():
-    st.sidebar.title('Store, Retrieve and Query Context With or Without Llamaindex')
+    st.sidebar.title('Store, Retrieve and Query the Context With or Without Llamaindex')
     selection = st.sidebar.radio("Pages", list(PAGES.keys()))
 
     page = PAGES[selection]
