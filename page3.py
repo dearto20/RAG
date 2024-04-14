@@ -24,7 +24,7 @@ def app():
 
     st.title('Manage Personal Context in the Local DB')
     
-    st.write('Remove All Embeddings in the DB')
+    st.write('Remove All Embeddings in the Database')
     if st.button('Reset Database'):
         try:
             db.delete_collection(collection_name)
