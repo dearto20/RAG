@@ -3,7 +3,9 @@ import llmmanager
 import uuid
 import re
 from llama_index.core import Document
+from llama_index.core import StorageContext
 from llama_index.core import VectorStoreIndex
+from llama_index.vector_stores.chroma import ChromaVectorStore
 
 def app():
     db = llmmanager.get_database()
@@ -26,12 +28,17 @@ def app():
     chunk_size = int(st.radio("Chunk Size", ["16", "32", "64"]))
 
     if st.button("Save Embeddings"):
+        collection = db.get_or_create_collection('context')
         doc = Document(text=context)
         documents = [doc]
-        vector_index = VectorStoreIndex.from_documents(documents)
+        vector_store = ChromaVectorStore(chroma_collection = collection)
+        storage_context = StorageContext.from_defaults(vector_store = vector_store)
+        index = VectorStoreIndex.from_documents(
+            documents, storage_context = storage_context
+        )
 
-
-        collection = db.get_or_create_collection('context')
+        
+        
         def add_chunk(chunk, sentence):
             embedding = llmmanager.get_embedding(chunk)
             collection.add(ids = [str(uuid.uuid4())], embeddings = [embedding], metadatas = [{'chunk': chunk, 'sentence': sentence, 'source': source}])
