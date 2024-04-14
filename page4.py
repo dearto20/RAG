@@ -30,4 +30,4 @@ def app():
     query_engine = index.as_query_engine()
     answer = query_engine.query(query)
 
-    st.write(answer)
+    st.markdown(str(answer))
