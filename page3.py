@@ -39,18 +39,25 @@ def app():
     source = st.selectbox('Source', ('KG', 'Runestone', 'Etc'))
     chunk_size = int(st.radio("Chunk Size", ['256', '512', '1024']))
 
-    if st.button('Save Embeddings'):
-        collection_name = 'context_with_llamaindex'
-        collection = db.get_or_create_collection(collection_name)
-        vector_store = ChromaVectorStore(chroma_collection = collection)
-        storage_context = StorageContext.from_defaults(vector_store = vector_store)
-        doc = Document(text=context)
-        documents = [doc]
-        text_splitter = SentenceSplitter(chunk_size = chunk_size, chunk_overlap = 10)
-        Settings.text_splitter = text_splitter
+    collection_name = 'context_with_llamaindex'
+    collection = db.get_or_create_collection(collection_name)
+    vector_store = ChromaVectorStore(chroma_collection = collection)
+    storage_context = StorageContext.from_defaults(vector_store = vector_store)
+    doc = Document(text = context, metadata = {"sentence": context})
+    documents = [doc]        
+    text_splitter = SentenceSplitter(chunk_size = chunk_size, chunk_overlap = 10)
+    Settings.text_splitter = text_splitter    
+        
+    if st.button('Set Embeddings'):
         index = VectorStoreIndex.from_documents(
             documents, storage_context = storage_context,
             transformations = [text_splitter]
         )
-
-        st.toast('Save Finished')
+        st.toast('Set Finished')
+    if st.button('Add Embeddings'):
+        index = VectorStoreIndex.from_vector_store(
+            vector_store, storage_context = storage_context,
+            transformations = [text_splitter]
+        )
+        index.insert(doc)
+        st.toast('Add Finished')
