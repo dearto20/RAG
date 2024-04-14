@@ -1,7 +1,4 @@
-import streamlit as st
 import llmmanager
-import uuid
-import re
 from llama_index.core import Document
 from llama_index.core import Settings
 from llama_index.core import StorageContext
@@ -10,7 +7,15 @@ from llama_index.core.node_parser import SentenceSplitter
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.vector_stores.chroma import ChromaVectorStore
 
+import streamlit as st
+import tomli
+import os
+import re
+import uuid
+
 def app():
+    config = tomli.loads(Path('config.toml').read_text())
+    os.environ['OPENAI_API_KEY'] = config['openai_token']
     Settings.embed_model = OpenAIEmbedding()
 
     db = llmmanager.get_database()
