@@ -48,7 +48,8 @@ def app():
     text_splitter = SentenceSplitter(chunk_size = chunk_size, chunk_overlap = 10)
     Settings.text_splitter = text_splitter    
         
-    if st.button('Convert the Context into Embeddings and Save to the Database'):
+    st.write('Convert the Context into Embeddings and Save')
+    if st.button("Save to the Database"):
         index = VectorStoreIndex.from_documents(
             documents, storage_context = storage_context,
         )
