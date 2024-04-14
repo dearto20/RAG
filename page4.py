@@ -19,7 +19,7 @@ def app():
     
     st.write(f'Answer the Question, {query}')
 
-    collection_name = 'context_with_llamaindex'    
+    collection_name = 'context_with_llamaindex'
     collection = db.get_or_create_collection(collection_name)
     vector_store = ChromaVectorStore(chroma_collection = collection)
     storage_context = StorageContext.from_defaults(vector_store = vector_store)

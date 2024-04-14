@@ -1,7 +1,7 @@
 import llmmanager
 from llama_index.core import Document
 from llama_index.core import Settings
-from llama_index.core import StorageContext, load_index_from_storage
+from llama_index.core import StorageContext
 from llama_index.core import VectorStoreIndex
 from llama_index.core.node_parser import SentenceSplitter
 from llama_index.embeddings.openai import OpenAIEmbedding
@@ -40,10 +40,13 @@ def app():
     source = st.selectbox('Source', ('KG', 'Runestone', 'Etc'))
     chunk_size = int(st.radio("Chunk Size", ['256', '512', '1024']))
 
+    collection_name = 'context_with_llamaindex'
     collection = db.get_or_create_collection(collection_name)
     vector_store = ChromaVectorStore(chroma_collection = collection)
     storage_context = StorageContext.from_defaults(vector_store = vector_store)
-    index = load_index_from_storage(storage_context)
+    index = VectorStoreIndex.from_vector_store(
+        vector_store, storage_context = storage_context
+    )
     st.write(str(index))
 
     if st.button('Save Embeddings'):
