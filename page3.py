@@ -33,10 +33,9 @@ def app():
         st.toast('Reset Finished')
     
     st.divider()
-    st.write('Add New Embeddings into the DB (Edit the Default Text Shown Below)')
+    st.write('Add New Embeddings into the DB')
 
-    text = 'I work in Samsung Electronics in Suwon-Si as a software developer, and commuting from Paygyo in Seongnam-si. I enjoy visualizing thoughts into programming code and see them work as expected. Sometimes, I play basketball early in the morning on weekends listening to music alone.'
-    context = st.text_area('Sentences', value = text, height = 196)
+    context = st.text_area('Sentences', height = 196)
     source = st.selectbox('Source', ('KG', 'Runestone', 'Etc'))
     chunk_size = int(st.radio("Chunk Size", ['256', '512', '1024']))
 
@@ -47,9 +46,11 @@ def app():
         storage_context = StorageContext.from_defaults(vector_store = vector_store)
         doc = Document(text=context)
         documents = [doc]
+        text_splitter = SentenceSplitter(chunk_size = chunk_size, chunk_overlap = 10)
+        Settings.text_splitter = text_splitter
         index = VectorStoreIndex.from_documents(
             documents, storage_context = storage_context,
-            transformations = [SentenceSplitter(chunk_size=chunk_size)]
+            transformations = [text_splitter]
         )
 
         st.toast('Save Finished')
