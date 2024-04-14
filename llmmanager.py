@@ -34,5 +34,5 @@ def get_completions(text):
 def get_database():
     global database
     if database is None:
-        database = chromadb.PersistentClient(path='data')
+        database = chromadb.PersistentClient(path='./database')
     return database
