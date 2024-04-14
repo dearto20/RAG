@@ -10,6 +10,7 @@ db = llmmanager.get_database()
 
 def app():
     st.title('Retrieve Context and Query LLM')
+    st.write('Enter a Query to Ask the LLM')
 
     query = st.text_input('Query')
     if query:
