@@ -26,6 +26,5 @@ def app():
 
     query_engine = index.as_query_engine()
     answer = query_engine.query('query')
-    answer.print_response_stream()
 
     st.write(answer)
