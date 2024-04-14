@@ -1,8 +1,8 @@
-chromadb==0.4.24
-httpx==0.27.0
-numpy==1.26.4
-streamlit==1.32.2
-tomli==2.0.1
-pysqlite3-binary==0.5.2
+chromadb
+httpx
 llama-index
 llama-index-vector-stores-chroma
+numpy
+streamlit
+tomli
+pysqlite3-binary
