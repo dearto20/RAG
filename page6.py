@@ -17,7 +17,7 @@ def app():
     else:
         return
     
-    prompt += f'Answer the Question, {query}'
+    sw.write(f'Answer the Question, {query}')
 
     collection_name = 'context_with_llamaindex'    
     collection = db.get_or_create_collection(collection_name)
