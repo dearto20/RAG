@@ -6,7 +6,7 @@ import re
 def app():
     db = llmmanager.get_database()
 
-    st.title('Manage Context in the Database')
+    st.title('Manage the Context in the Database')
     
     st.write('Remove All Embeddings in the Database')
     if st.button("Reset the Database"):
