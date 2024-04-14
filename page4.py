@@ -9,7 +9,7 @@ import pandas as pd
 db = llmmanager.get_database()
 
 def app():
-    st.title('Retrieve Context and Query the LLM')
+    st.title('Retrieve the Context and Query the LLM')
     st.write('Enter a Query to Ask the LLM')
 
     query = st.text_input('Query')
