@@ -3,6 +3,7 @@ import llmmanager
 import uuid
 import re
 from llama_index.core import Document
+from llama_index.core import VectorStoreIndex
 
 def app():
     db = llmmanager.get_database()
@@ -26,6 +27,8 @@ def app():
 
     if st.button("Save Embeddings"):
         doc = Document(text=context)
+        documents = [doc]
+        vector_index = VectorStoreIndex.from_documents(documents)
 
 
         collection = db.get_or_create_collection('context')
