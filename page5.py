@@ -49,8 +49,4 @@ def app():
             transformations = [SentenceSplitter(chunk_size=chunk_size)]
         )
 
-        query_engine = index.as_query_engine(similarity_top_k=10)
-        response = query_engine.query('how many scores did Michael Jordan score in NBA finals?')
-        st.write('response')
-    
         st.toast('Save Finished')
