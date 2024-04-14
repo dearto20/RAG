@@ -16,6 +16,8 @@ def app():
         print('Query: ', query)
     else:
         return
+    
+    st.write(query);
 
     collection = db.get_or_create_collection('context')
     vector_store = ChromaVectorStore(chroma_collection = collection)
