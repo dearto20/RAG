@@ -5,6 +5,7 @@ import re
 from llama_index.core import Document
 from llama_index.core import StorageContext
 from llama_index.core import VectorStoreIndex
+from llama_index.core.node_parser import SentenceSplitter
 from llama_index.vector_stores.chroma import ChromaVectorStore
 
 def app():
@@ -34,10 +35,11 @@ def app():
         vector_store = ChromaVectorStore(chroma_collection = collection)
         storage_context = StorageContext.from_defaults(vector_store = vector_store)
         index = VectorStoreIndex.from_documents(
-            documents, storage_context = storage_context
+            documents, storage_context = storage_context,
+            transformations = [SentenceSplitter(chunk_size=chunk_size)]
         )
 
-        
+
         
         def add_chunk(chunk, sentence):
             embedding = llmmanager.get_embedding(chunk)
