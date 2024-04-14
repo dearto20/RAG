@@ -39,4 +39,4 @@ def app():
             transformations = [SentenceSplitter(chunk_size=chunk_size)]
         )
     
-        st.toast('Save Finished')
+        st.toast('Save Finished : ' + index)
